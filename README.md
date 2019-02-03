@@ -1,1 +1,1 @@
-# EdgeTraining
+# Edge Training Framework
