@@ -137,6 +137,12 @@ inline std::vector<NodeEntry> MakeNNBackwardNode(
 ```
 
 
+----
+*之前我们讨论了tinyflow中的架构（使用旧版NNVM做graph和Torch7做op），可是我们怎么在NNVM/TVM中找到对应接口呢？*
+
+@[XXQ](https://github.com/xuxiaoqiao)之前在[石墨文档](https://shimo.im/docs/FOGmkWlh5xMr0ivd/)中从NNVM代码层讨论了NNVM和TVM的交互路径。
+
+
 
 
 
