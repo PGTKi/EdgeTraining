@@ -160,6 +160,7 @@ inline std::vector<NodeEntry> MakeNNBackwardNode(
 @[XXQ](https://github.com/xuxiaoqiao)之前在[石墨文档](https://shimo.im/docs/FOGmkWlh5xMr0ivd/)中从NNVM代码层讨论了NNVM和TVM的交互路径。
 我们承接做进一步的分解。@[XXQ](https://github.com/xuxiaoqiao)讨论到了在python层面调用nnvm.compiler.build()之后，是如何一步步调用到topi/python/topi/mali/conv2d.py的。
 
+
 在topi/python/topi/mali/conv2d.py中，原作者采用的也是REGISTER的方式，不过为了自动调参，采用了autotvm.register_topi_schedule和autotvm.register_topi_compute对应schedule(编译)和compute(执行)。
 
 对应的，在topi/src/topi.cc中，采用TVM_REGISTER_GLOBAL注册了诸如nn.dense,argmax等操作，对应TVM在python层面的调度。
@@ -170,8 +171,8 @@ inline std::vector<NodeEntry> MakeNNBackwardNode(
 
 
 另有一些与我们相关的文件：
-src/codegen/codegen_opencl.cc:目测是生成opencl代码的部分，但并没有找到heavy compute如conv2d等
-src/op和src/pass:是设置op的核心部分。目前没有找到反向计算的部分。
+- src/codegen/codegen_opencl.cc:目测是生成opencl代码的部分，但并没有找到heavy compute如conv2d等
+- src/op和src/pass:是设置op的核心部分。目前没有找到反向计算的部分。
 
 
 -----
