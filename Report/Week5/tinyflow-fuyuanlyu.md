@@ -1,6 +1,21 @@
 #### 本周任务
+##### 上周目标
+- 找到NNVM对于反向图的接口
+- 在TVM层面实现对于反向算子的支持
+- 整理出整个网络的设计流程，考虑多种方案，加入调研报告中
 
-暂略
+##### 上周工作
+- tinyflow整体架构梳理（对NNVM的理解）
+- 找到NNVM对于反向图的接口
+
+##### 本周工作
+- 将tinyflow中的反向图生成代码迁移到NNVM并生成json
+- 如果有时间，完成TVM的反向算子
+
+##### 可能风险
+system error一堆......
+
+
 
 --------
 #### Tinyflow中NNVM的调用
@@ -143,7 +158,26 @@ inline std::vector<NodeEntry> MakeNNBackwardNode(
 *之前我们讨论了tinyflow中的架构（使用旧版NNVM做graph和Torch7做op），可是我们怎么在NNVM/TVM中找到对应接口呢？*
 
 @[XXQ](https://github.com/xuxiaoqiao)之前在[石墨文档](https://shimo.im/docs/FOGmkWlh5xMr0ivd/)中从NNVM代码层讨论了NNVM和TVM的交互路径。
-我们承接做进一步的分解
+我们承接做进一步的分解。@[XXQ](https://github.com/xuxiaoqiao)讨论到了在python层面调用nnvm.compiler.build()之后，是如何一步步调用到topi/python/topi/mali/conv2d.py的。
+
+在topi/python/topi/mali/conv2d.py中，原作者采用的也是REGISTER的方式，不过为了自动调参，采用了autotvm.register_topi_schedule和autotvm.register_topi_compute对应schedule(编译)和compute(执行)。
+
+对应的，在topi/src/topi.cc中，采用TVM_REGISTER_GLOBAL注册了诸如nn.dense,argmax等操作，对应TVM在python层面的调度。
+
+继续：寻找NNVM构建反向图的代码：目前tinyflow是在本身的src中构建NN的反向节点；XXQ在实验层面并没有在这一层出错。但我并没有在NNVM本身的repo中找到对应的代码。比较相关的是：nnvm/src/core/graph.cc中的IndexedGraph()和nnvm/src/pass/gradient.cc。
+
+**与XXQ达成的共识：目前NNVM层面给了Gradient Pass，但具体update可能需要手写/copy tinyflow。**
+
+
+另有一些与我们相关的文件：
+src/codegen/codegen_opencl.cc:目测是生成opencl代码的部分，但并没有找到heavy compute如conv2d等
+src/op和src/pass:是设置op的核心部分。目前没有找到反向计算的部分。
+
+
+-----
+额外消息：
+关于最后的Testing部分，NNVM在nnvm/python/testing中有部分常用网络，且部分网络不需要外部依赖。但目测并没有training的部分代码。
+
 
 
 
