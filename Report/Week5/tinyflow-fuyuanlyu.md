@@ -35,6 +35,8 @@ def max_pool(data,
 
 在nnvm\python\nnvm\symbol.py中，我们并没有找到了对应的代码。*（对于python和c++在这个部分是如何interact的，我需要进一步了解）*
 
+之后：
+关于python和c++在TVM框架中的执行，我参考的是[Runtime](https://docs.tvm.ai/dev/runtime.html)。在Runtime中定义好了c++的function后，TVM在python层面需要通过TVM_REGISTER_GLOBAL和tvm.get_global_func来注册和调用对应的变量名。其中在注册过程中需要定义好输入和输出。
 
 ##### 从source开始，厘清tinyflow与Torch7的调用关系
 根据README，我们了解到Ops Level的实现都是基于Torch7的。而我们在src\torch\下，我们发现了op_nn_torch.cc和op_tensor_torch.cc。在这两个文件中，我们发现了大量的NNVM注册调用：
@@ -141,6 +143,7 @@ inline std::vector<NodeEntry> MakeNNBackwardNode(
 *之前我们讨论了tinyflow中的架构（使用旧版NNVM做graph和Torch7做op），可是我们怎么在NNVM/TVM中找到对应接口呢？*
 
 @[XXQ](https://github.com/xuxiaoqiao)之前在[石墨文档](https://shimo.im/docs/FOGmkWlh5xMr0ivd/)中从NNVM代码层讨论了NNVM和TVM的交互路径。
+我们承接做进一步的分解
 
 
 
