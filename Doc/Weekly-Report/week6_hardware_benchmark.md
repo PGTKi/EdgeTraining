@@ -6,7 +6,10 @@
 ## 设置 CPU 的频率为最高
 
 ```
-
+# cpu{0,1,2,3} 是小核 cpu{4,5} 是大核
+# 需要切换到 root
+cd /sys/devices/system/cpu/cpu5/cpufreq/
+cat scaling_max_freq > scaling_min_freq
 ```
 
 ## 测量 CPU 的频率
