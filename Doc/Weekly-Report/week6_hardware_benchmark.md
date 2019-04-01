@@ -2,6 +2,8 @@
 
 > 本文档记录 CPU frequency 和 memory bandwidth 的测试结果。
 > 目的是确认硬件本身无故障
+> 
+> 参考 https://github.com/OAID/Tengine/blob/master/doc/benchmark.md
 
 ## 设置 CPU 的频率为最高
 
