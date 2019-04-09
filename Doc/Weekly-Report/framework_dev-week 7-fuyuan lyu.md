@@ -13,16 +13,7 @@
 - 对于NNVM架构下的各种概念还在熟悉中
 
 #### paper reading: 
-##### Towards Memory Friendly Long-Short Term Memory Networks (LSTMs) on Mobile GPUs
-背景&问题：
-- LSTM在NLP问题（个人智能助理）中很重要
-- mobile GPU上，LSTM效率很低，原因有两个：reduantant data movement & limited off-chip bandwidth
+[Towards Memory Friendly Long-Short Term Memory Networks (LSTMs) on Mobile GPUs](https://shimo.im/docs/pM9DMcQwRZUROm59/)
 
-解决方法
-
-| 问题 | 解决方案 |
-| --- | --- |
-| reduantant data movement |  **inter-cell level optimizations** that intelligently parallelize the originally sequentially executed LSTM cells | 
-| limited offchip memory bandwidth | **intra-cell level optimizations** that dynamically skip the loads and computations of rows in the weight matrices with trivial contribution to the outputs |
 
 
