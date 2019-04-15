@@ -17,7 +17,7 @@ Contents:
 ```
 cd tvm
 mkdir playground
-touch hello.py
+touch playground/hello.py
 vim hello.py
 ```
 
