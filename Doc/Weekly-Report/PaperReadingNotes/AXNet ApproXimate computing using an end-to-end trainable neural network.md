@@ -94,4 +94,4 @@ two ways for the fusion of subnets:
 
 ​	only in the second hidden layer, respectively. 
 
-![1](.\Images\AXNet\7.png)
+![1](./Images/AXNet/7.png)
