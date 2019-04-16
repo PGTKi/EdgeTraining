@@ -26,10 +26,18 @@ Standard training for convolutional filters does not maximize the representation
 
 > 作者的实验表明标准的训练并没有最大化网络的表征潜力。
 
-# Algorithm
+# Training
 
 ![data](https://pic1.zhimg.com/v2-863dbfd82bd66ab1e9cb901ae13974c4_r.jpg)
 
 算法中最重要的其实是$R(f)$，即如何选出需要drop的filters。
 
 ![data](Images/RePr/1.jpg)
+
+加上对正交的惩罚项（但实验证明这一项并不会影响performance），最终损失函数为：$L=CrossEntropy + \lambda P$
+
+# Reinitialization
+
+We reinitialize the filters (F_hat) to be orthogonal to its value before being dropped and the current value of nonpruned filters (F − F_hat). We use the QR decomposition on the weights of the filters from the same layer to find the null-space and use that to find an orthogonal initialization point
+
+> 被裁剪前的权值（老的、被prune的权值）+sub-network训练一段时间后的权值（新的、没有被prune的权值），组成矩阵W —— 对W矩阵QR分解 —— 找到null-space —— find the null-space and use that to find an orthogonal initialization point.
