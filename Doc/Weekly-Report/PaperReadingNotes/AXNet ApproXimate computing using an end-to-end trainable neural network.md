@@ -20,11 +20,11 @@ The obstacle to making the two NNs cooperation is that two NNs in the approximat
 
 #### Failure
 
-![微信图片_20190331224002](.\Images\AXNet\微信图片_20190331224002.png)
+![微信图片_20190331224002](./Images/AXNet/微信图片_20190331224002.png)
 
 出现的问题：
 
-![微信图片_20190331224113](.\Images\AXNet\微信图片_20190331224113.png)
+![微信图片_20190331224113](./Images/AXNet/微信图片_20190331224113.png)
 
 问题有：
 
@@ -32,7 +32,7 @@ The obstacle to making the two NNs cooperation is that two NNs in the approximat
 
 #### Architecture
 
-![微信图片_20190331224010](.\Images\AXNet\微信图片_20190331224010.png)
+![微信图片_20190331224010](./Images/AXNet/微信图片_20190331224010.png)
 
 ### 实验
 
@@ -42,7 +42,7 @@ The obstacle to making the two NNs cooperation is that two NNs in the approximat
 - onepass
 - iterative
 
-![benchmark](.\Images\AXNet\benchmark.png)
+![benchmark](./Images/AXNet/benchmark.png)
 
 Evaluation Metrics:
 
@@ -57,32 +57,32 @@ Evaluation Metrics:
 
 - True Invocation
 
-![1](.\Images\AXNet\1.png)
+![1](./Images/AXNet/1.png)
 
 - Predicted Invocation
 
 This is because the iterative training method selects the training data in favor of the classifier.  
 
-![1](.\Images\AXNet\2.png)
+![1](./Images/AXNet/2.png)
 
 - Overall Approximation Error
 
-![1](.\Images\AXNet\3.png)
+![1](./Images/AXNet/3.png)
 
 - the variation of the true and predicted invocation by varying the network topology, i.e., adjusting the
   number of neurons in hidden layers.  
 
-![1](.\Images\AXNet\4.png)
+![1](./Images/AXNet/4.png)
 
 - the ratio of parameter count and the training time of AXNet compared to iterative training 
 
-![1](.\Images\AXNet\5.png)
+![1](./Images/AXNet/5.png)
 
 - Comparisons on the energy efficiency 
 
 the enhancement of the true invocation contributes to the improvement of the energy-efficiency. 
 
-![1](.\Images\AXNet\6.png)
+![1](./Images/AXNet/6.png)
 
 - Investigation of the scalability of AXNet by fusing two subnets in three ways 
 
