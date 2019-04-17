@@ -71,7 +71,7 @@ if __name__ == "__main__":
 
 > 背景和需求: 分析 `conv2d` 的实现是为了模仿它，实现 `_conv2d_grad`
 
-Call stack 就不分析了。之前已经有一个 doc. 另外, 在 debugger 里设置断点跑一遍是更加直观的。
+Call stack 就不分析了。[之前已经有一个 doc](https://shimo.im/docs/FOGmkWlh5xMr0ivd/). 另外, 在 debugger 里设置断点跑一遍是更加直观的。
 
 我们直接看 `topi/python/topi/mali/conv2d.py` 中的函数. `conv2d_mali` ➡️ `_decl_spatial_pack`
 
