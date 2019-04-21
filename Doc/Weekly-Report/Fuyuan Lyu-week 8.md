@@ -26,3 +26,9 @@ Y(i) = [ MAX( floor( ( i+padding[0]-Poolsize[0] ) / stride[0] ), 0 ), MIN ( ceil
 
 
 Y(j) = [ MAX( floor( ( j+padding[1]-Poolsize[1] ) / stride[1] ), 0 ), MIN ( ceil( ( j + padding[1] ) / stride[1] ) , MAXPOSSIBLE(j)) ]
+
+
+
+#### 对于Pooling在别的架构中实现参考
+[这里](https://shimo.im/docs/E4pBu1ZQn60bqpHJ/)
+
