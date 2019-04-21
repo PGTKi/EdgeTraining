@@ -6,19 +6,19 @@
 
 ## 方法：
 
-####trajectory
+#### trajectory
 
  从头到尾一层一层，一层输入一个state输出一个action，整个网络剪完（不微调）直接测试精度
 
-####RL state
+#### RL state
 
 使用某一层的基本信息，层数t,n,c,h,w,stride,k,还有这一层的FLOPS以及前一层已经省掉的FLOPS，前一层的action和网络后面剩下的FLOPS，
 
-####RL action
+#### RL action
 
  这一层的剪枝率，具体剪哪些不在考虑范围。实验中使用least magnitude 剪 fine-grained,使用 max response 选择 channel pruning
 
-####RL reward
+#### RL reward
 
 和目标有关，
 
@@ -39,11 +39,11 @@ CIFAR-10 computationally efficient: the RL can finish searching within 1 hour on
 
 The result we obtain has up to 60% compression ratio with even a little higher accuracy on both validation set and test set, which might be in light of the regularization effect of pruning
 
-![1555816222417](.\Images\AMC\1555816222417.png)
+![1555816222417](./Images/AMC/1555816222417.png)
 
-![1555816171408](.\Images\AMC\1555816171408.png)
+![1555816171408](./Images/AMC/1555816171408.png)
 
-![1555816117930](.\Images\AMC\1555816117930.png)
+![1555816117930](./Images/AMC/1555816117930.png)
 
 ## 思考
 
