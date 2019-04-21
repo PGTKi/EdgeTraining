@@ -6,7 +6,7 @@
 
 ### 稀疏的表示方法：
 
-![1553594455583](Images\nullHop\1553594455583.png)
+![1553594455583](Images/nullHop/1553594455583.png)
 
 
 
@@ -14,13 +14,13 @@
 
 ### 利用稀疏的计算方法：
 
-![1553595072572](Images\nullHop\1553595072572.png)
+![1553595072572](Images/nullHop/1553595072572.png)
 
 对于非零的激活值，计算这个激活值会对feature map哪些位置产生影响，对应乘kernel的值，在相应位置累加。 上述过程在不同输出feature map之间并行。
 
 ## 架构工作流程：
 
-![1553597783655](Images\nullHop\1553597783655.png)
+![1553597783655](Images/nullHop/1553597783655.png)
 
 #### 压缩好的feature map从external DRAM 发送进来
 
@@ -62,7 +62,7 @@ pooling 的原理和relu的处理都是在从PRE buffer到 output buffer传输�
 
 ## 试验结果：
 
-![1553601219997](Images\nullHop\1553601219997.png)
+![1553601219997](Images/nullHop/1553601219997.png)
 
 作者在实验分析中提到， VGG这样的大网络在这个架构上面的利用率比较高
 
