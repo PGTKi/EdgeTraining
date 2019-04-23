@@ -9,9 +9,9 @@
 设在反向图中后一层的某个点为 ( i, j ),
 则其影响到的在前一层中的点的范围为：
 
-X(i) = [ MAX( newheight-padding[0], 0 ), MIN( newheight-padding[0]+Poolsize[0]-1, max_height-1 ) ]
+X(i) = [ MAX( newheight-padding[0], 0 ), MIN( newheight-padding[0]+Poolsize[0], max_height ) ]
 
-X(j) = [ MAX( newweight-padding[1], 0 ), MIN( newweight-padding[1]+Poolsize[1]-1, max_weight-1 ) ]
+X(j) = [ MAX( newweight-padding[1], 0 ), MIN( newweight-padding[1]+Poolsize[1], max_weight ) ]
 
 newheight = stride[0] * i
 
