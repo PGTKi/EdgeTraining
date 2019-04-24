@@ -11,6 +11,7 @@
 - 调研conv2d如何用已有的ops实现，写出伪代码
 - 完成 _max_pool2d_gradient FTVMCompute
 - 尽量完成 _conv2d_gradient FTVMCompute
+- HalideIR gather/scatter问题
 - 其他
 
 #### 潜在风险
