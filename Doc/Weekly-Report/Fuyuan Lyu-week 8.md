@@ -15,6 +15,7 @@
 
 #### 潜在风险
 - nnvm.testing.check_computation.check_function函数仅支持传回output_grad和input，maxpool2d尚且可以根据input直接找到对应的max点，完成计算；conv2d一定要借助kernel的存在。如何传递kernel是一个问题。
+- check_function只能测试output，但conv2d需要测试kernel和output的update。conv2d怎么测试对kernel的update？
 - 当前版本v0.5能否避免Relay的干扰
 
 ----------------------------------------
