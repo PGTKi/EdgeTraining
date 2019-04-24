@@ -12,6 +12,7 @@
 - 完成 _max_pool2d_gradient FTVMCompute
 - 尽量完成 _conv2d_gradient FTVMCompute
 - HalideIR gather/scatter问题
+- _max_pool2d_grad 尽量按照input_grad做循环
 - 其他
 
 #### 潜在风险
