@@ -27,22 +27,14 @@
 ##### 关于Maxpool2d反向传播中某一点可能影响到的前向点的范围的计算
 设在反向图中后一层的某个点为 ( i, j ),
 则其影响到的在前一层中的点的范围为：
-
-X(i) = [ MAX( newheight-padding[0], 0 ), MIN( newheight-padding[0]+Poolsize[0], max_height ) ]
-
-X(j) = [ MAX( newweight-padding[1], 0 ), MIN( newweight-padding[1]+Poolsize[1], max_weight ) ]
-
-newheight = stride[0] * i
-
-newweight = stride[1] * i
+<a href="https://www.codecogs.com/eqnedit.php?latex=X(i)&space;=&space;[max(newheight-padding[0],0),&space;min(newheight-padding[0]&plus;Poolsize[0],&space;maxheight)]" target="_blank"><img src="https://latex.codecogs.com/gif.latex?X(i)&space;=&space;[max(newheight-padding[0],0),&space;min(newheight-padding[0]&plus;Poolsize[0],&space;maxheight)]" title="X(i) = [max(newheight-padding[0],0), min(newheight-padding[0]+Poolsize[0], maxheight)]" /></a>
+<a href="https://www.codecogs.com/eqnedit.php?latex=X(j)&space;=&space;[max(newweight-padding[1],0),&space;min(newweight-padding[1]&plus;Poolsize[1],&space;maxweight)]&space;newheight&space;=&space;stride[1]&space;*&space;j" target="_blank"><img src="https://latex.codecogs.com/gif.latex?X(j)&space;=&space;[max(newweight-padding[1],0),&space;min(newweight-padding[1]&plus;Poolsize[1],&space;maxweight)]&space;newheight&space;=&space;stride[1]&space;*&space;j" title="X(j) = [max(newweight-padding[1],0), min(newweight-padding[1]+Poolsize[1], maxweight)]" /></a>
+<a href="https://www.codecogs.com/eqnedit.php?latex=newheight&space;=&space;stride[0]&space;&plus;&space;i,&space;newweight&space;=&space;stride[1]&space;*&space;j" target="_blank"><img src="https://latex.codecogs.com/gif.latex?newheight&space;=&space;stride[0]&space;&plus;&space;i,&space;newweight&space;=&space;stride[1]&space;*&space;j" title="newheight = stride[0] + i, newweight = stride[1] * j" /></a>
 
 设在反向图中前一层的某个点为 ( i, j ),
 则其影响到的在后一层中的点的范围为：
-
-Y(i) = [ MAX( floor( ( i+padding[0]-Poolsize[0] ) / stride[0] ), 0 ), MIN ( ceil( ( i + padding[0] ) / stride[0] ) , MAXPOSSIBLE(i)) ]
-
-Y(j) = [ MAX( floor( ( j+padding[1]-Poolsize[1] ) / stride[1] ), 0 ), MIN ( ceil( ( j + padding[1] ) / stride[1] ) , MAXPOSSIBLE(j)) ]
-
+<a href="https://www.codecogs.com/eqnedit.php?latex=Y(i)&space;=&space;[&space;max(&space;floor(&space;(&space;i&plus;padding[0]-Poolsize[0]&space;)&space;/&space;stride[0]&space;),&space;0&space;),&space;min&space;(&space;ceil(&space;(&space;i&space;&plus;&space;padding[0]&space;)&space;/&space;stride[0]&space;)&space;,&space;MAXPOSSIBLE(i))&space;]" target="_blank"><img src="https://latex.codecogs.com/gif.latex?Y(i)&space;=&space;[&space;max(&space;floor(&space;(&space;i&plus;padding[0]-Poolsize[0]&space;)&space;/&space;stride[0]&space;),&space;0&space;),&space;min&space;(&space;ceil(&space;(&space;i&space;&plus;&space;padding[0]&space;)&space;/&space;stride[0]&space;)&space;,&space;MAXPOSSIBLE(i))&space;]" title="Y(i) = [ max( floor( ( i+padding[0]-Poolsize[0] ) / stride[0] ), 0 ), min ( ceil( ( i + padding[0] ) / stride[0] ) , MAXPOSSIBLE(i)) ]" /></a>
+<a href="https://www.codecogs.com/eqnedit.php?latex=Y(j)&space;=&space;[&space;max(&space;floor(&space;(&space;j&plus;padding[1]-Poolsize[1]&space;)&space;/&space;stride[1]&space;),&space;0&space;),&space;min&space;(&space;ceil(&space;(&space;j&space;&plus;&space;padding[1]&space;)&space;/&space;stride[1]&space;)&space;,&space;MAXPOSSIBLE(j))&space;]" target="_blank"><img src="https://latex.codecogs.com/gif.latex?Y(j)&space;=&space;[&space;max(&space;floor(&space;(&space;j&plus;padding[1]-Poolsize[1]&space;)&space;/&space;stride[1]&space;),&space;0&space;),&space;min&space;(&space;ceil(&space;(&space;j&space;&plus;&space;padding[1]&space;)&space;/&space;stride[1]&space;)&space;,&space;MAXPOSSIBLE(j))&space;]" title="Y(j) = [ max( floor( ( j+padding[1]-Poolsize[1] ) / stride[1] ), 0 ), min ( ceil( ( j + padding[1] ) / stride[1] ) , MAXPOSSIBLE(j)) ]" /></a>
 
 ##### 关于check_function
 nnvm.testing.check_computation.check_function可以帮助测试新的Op。支持前向，反向和numerical测试。
