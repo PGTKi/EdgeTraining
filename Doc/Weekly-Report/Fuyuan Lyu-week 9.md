@@ -20,9 +20,10 @@
 #### \_max_pool2d_gradient FTVMCompute 
 目前，已经测试通过了以下几种实现方式：
 - tvm.hybrid 以out_grad为循环
-- tvm.compute 以in_grad为循环（in_grad为循环的，目前还只能让input中的点和output整个做对比，因此大量test的时候会fail）
-- tvm.hybrid 以in_grad为循环，正在进行中
+- tvm.compute 以in_grad为循环，目前还只能让input中的点和output整个做对比，因此大量test的时候会fail
+- tvm.hybrid 以in_grad为循环。已经失败，问题在于没有办法在tvm.hybrid中创建mask tensor来记录in_grad和out_grad的对应关系
 
+在虚拟机上运行时间约为1s
 
 #### conv2d testing code
 预计周日完成
