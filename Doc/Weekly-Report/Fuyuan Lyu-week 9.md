@@ -20,10 +20,12 @@
 #### \_max_pool2d_gradient FTVMCompute 
 目前，已经测试通过了以下几种实现方式：
 - tvm.hybrid 以out_grad为循环
-- tvm.compute 以in_grad为循环，目前还只能让input中的点和output整个做对比，因此大量test的时候会fail
-- tvm.hybrid 以in_grad为循环。已经失败，问题在于没有办法在tvm.hybrid中创建mask tensor来记录in_grad和out_grad的对应关系
+- **tvm.compute 以in_grad为循环，reduce_axis一定要是编译器常量，但是可以加偏移量（这是目前最满意的实现）**
+- tvm.hybrid 以in_grad为循环。已经放弃，问题在于没有办法在tvm.hybrid中创建mask tensor来记录in_grad和out_grad的对应关系
 
-在虚拟机上运行时间约为1s
+在虚拟机上运行时间略小于1s
+ 
+之后会在tvm.schedule上进行优化，目前schedule只是默认的方式
 
 #### conv2d testing code
 预计周日完成
