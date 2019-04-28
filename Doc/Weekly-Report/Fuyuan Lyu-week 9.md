@@ -4,7 +4,7 @@
 - [ ] 完成conv2d testing code撰写
 - [ ] 完成end-to-end testing code(likely MNIST)
 - [x] 完成 \_max_pool2d_gradient FTVMCompute，尽量按照in_grad做循环
-- [ ] 调研conv2d如何用已有的ops实现，写出伪代码
+- [x] 调研conv2d如何用已有的ops实现，写出伪代码
 - [ ] 尽量完成 \_conv2d_gradient FTVMCompute
 
 #### 下周任务：
@@ -34,7 +34,9 @@
 预计周日完成
 
 #### \_conv2d_gradient 调研及伪代码
-预计周一完成
+不建议用已有的Ops，会有比较麻烦的reshape
+
+目前@XXQ正在写FTVMCompute，暂不优化Schedule
 
 #### \_conv2d_gradient FTVMCompute
-后期完成
+目前@XXQ正在写FTVMCompute
