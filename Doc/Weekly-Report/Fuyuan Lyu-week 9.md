@@ -1,7 +1,7 @@
 ### Week 9 Report
 #### 本周任务：
 - [x] ROCm/MIOpen调研
-- [ ] 完成conv2d testing code撰写
+- [x] 完成conv2d testing code撰写
 - [ ] 完成end-to-end testing code(likely MNIST)
 - [x] 完成 \_max_pool2d_gradient FTVMCompute，尽量按照in_grad做循环
 - [x] 调研conv2d如何用已有的ops实现，写出伪代码
@@ -28,15 +28,13 @@
 之后会在tvm.schedule上进行优化，目前schedule只是默认的方式
 
 #### conv2d testing code
-预计周日完成
+[已经完成](https://github.com/acada-sjtu/EdgeTraining/blob/master/Code/edge-tvm/op-test-conv2d.py)
 
 #### end-to-end testing code
-预计周日完成
+暂缓完成，目前没有可预见的技术障碍。提高了Dynamic Graph可行性分析的优先级
 
 #### \_conv2d_gradient 调研及伪代码
-不建议用已有的Ops，会有比较麻烦的reshape
-
-目前@XXQ正在写FTVMCompute，暂不优化Schedule
+实现方法详见调研
 
 #### \_conv2d_gradient FTVMCompute
-目前@XXQ正在写FTVMCompute
+目前已经初步完成FTVMCompute，暂不优化Schedule，正在测试
