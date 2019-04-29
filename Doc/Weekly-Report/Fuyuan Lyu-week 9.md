@@ -6,11 +6,20 @@
 - [x] 完成 \_max_pool2d_gradient FTVMCompute，尽量按照in_grad做循环
 - [x] 调研conv2d如何用已有的ops实现，写出伪代码
 - [ ] 尽量完成 \_conv2d_gradient FTVMCompute
+- [x] 初步调研对动态图的支持
+- [x] 初步调研对结构性稀疏的支持
 
 #### 下周任务：
 
-#### 潜在风险：
+- 继续完成end-to-end testing code
+- 确保FTVMCompute正确性
+- 尽量优化Schedule
+- 进一步细化对结构性稀疏的支持
+- 在周末前，完成end-to-end training
 
+#### 潜在风险：
+- 听怜悯分析，TVM对training的效果会很一般
+- 可能需要手写顶端的部分工作，TVM对training没有留下很多的空间
 
 -------------------------------------
 #### ROCm/MIOpen调研
@@ -38,3 +47,15 @@
 
 #### \_conv2d_gradient FTVMCompute
 目前已经初步完成FTVMCompute，暂不优化Schedule，正在测试
+
+#### 对结构性稀疏的支持
+采用control的方法，在计算图中添加control元素：
+- 这需要涉及到对Op的重写
+- 这可能是一个对方法很依赖的实现
+- 结构性稀疏有可能与AutoTVM的特性（AI for System）产生冲突。AutoTVM在一个device上部署了最优解，但结构性稀疏可能导致部分没有算，因此效能未必会大幅提升。有可能需要与AutoTVM进行一定的衔接。
+
+#### 对动态图的支持
+1. 初步调研了TVM对现有的frameworks import数据的支持，感觉是一个非常case-by-case的工作
+2. 如果考虑在TVM中实现动态特性，则需要把compiler load到edge端，负载过大
+
+
