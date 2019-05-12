@@ -10,7 +10,15 @@
 ----------------
 
 #### 结构性稀疏
-目前已经确认应该在TVM层面进行优化，NNVM层面的optimzation主要是以layer fusion为主。
+已经确认应该在TVM层面进行优化，NNVM层面的optimzation主要是以layer fusion为主。
 
-目前已经开始coding。
+已经成功在TVM中重新定义了conv2d_sparse和_conv2d_sparse_gradient操作符。目前已经完成两者的接口的支持，正在通过传入的sparse matrix对两者的compute和schedule做支持。
+
+当前优先考虑前向。
+
+
+#### end2end testing code
+TVM本身为测试做了一些API，其中比较有用的是nnvm/testing/utils.py中的create_workload函数。可以根据神经网络定义的handle，返回网络结构和参数。
+
+
 
