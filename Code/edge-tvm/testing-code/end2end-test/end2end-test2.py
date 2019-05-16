@@ -39,50 +39,47 @@ if __name__ == "__main__":
 
     a = tvm.placeholder((1, 3, 32, 32), name="a")
     b = tvm.placeholder((1, 10), name="b")
-    
+
+    dense_weight =sym.Variable("dense_weight",init=np.empty((900, 10), dtype=dtype))
     # define network
     data = sym.Variable("data")
     y1 = sym.conv2d(data=data, channels=1, kernel_size=(3,3), padding=(0,0), use_bias=False, out_layout='NCHW')
-    y2 = sym.conv2d(data=y1, channels=1, kernel_size=(3,3), padding=(0,0), use_bias=False, out_layout='NCHW')
-    y3 = sym.flatten(y2)
-    y4 = sym.dense(y3, units=10)
+    y2 = sym.flatten(y1)
+    #y3 = sym.dense(y2, units=10, use_bias=False)
+    y3 = sym.dense(y2, weight=dense_weight, use_bias=False)
+    y4 = sym.softmax(y3)
     out = y4            # This is some of the loss function
 
-
-    # define optimizer
-    
-    base_lr = 0.1
-    beta1 = 0.9
-    beta2 = 0.999
-    epsilon = 1e-8
-    lr_factor = 0.5
-    rescale_grad = 0.2
-    wd = 0.1
-    clip_gradient = 0.25
-
-    scheduler = lr_scheduler.FactorScheduler(base_lr=base_lr, step=1, factor=lr_factor)
-    opt = optimizer.Adam(learning_rate=base_lr, beta1=beta1, beta2=beta2, epsilon=epsilon, lr_scheduler=scheduler, rescale_grad=rescale_grad, clip_gradient=clip_gradient, wd=wd)
-    opt_sym = opt.minimize(out)
-
-    
     # create workload
     net, params = create_workload(out, batch_size, image_shape, dtype)
     #print(net.debug_str())
 
-    target = tvm.target.create('opencl')
+    target = tvm.target.create('llvm')
+    #target = tvm.target.create('opencl')
     with nnvm.compiler.build_config(opt_level=0):
         graph, lib, params = nnvm.compiler.build(net, target, shape={"data": data_shape}, params=params)
 
-    
     # create random input
-    ctx = tvm.opencl()
+    #ctx = tvm.opencl()
+    ctx = tvm.context("llvm", 0)
     #data = np.random.uniform(-1, 1, size=data_shape).astype("float32")
     data = train_data[:1].swapaxes(1,3).swapaxes(2,3).astype("float32")
+    label = train_labels[:1]
+    real_label = np.zeros(10, dtype='int8')
+    for i in range(10):
+        if i == label:
+            real_label[i] = 1
+    print(real_label)
+
     # create module
     module = graph_runtime.create(graph, lib, ctx)
     # set input and parameters
     module.set_input("data", data)
-    module.set_input(**params)
+    #print("-----------------------")
+    #for i in params.items():
+    #    print(i)
+    new_params = {key: value for key, value in params.items() if key != 'Adam_t'}
+    module.set_input(**new_params)
     # run
     module.run()
     # get output
@@ -91,6 +88,24 @@ if __name__ == "__main__":
     out.asnumpy()
 
     # Print first 10 elements of output
-    print(out.asnumpy().flatten()[0:10])
+    print("----------Output----------")
+    print(out.asnumpy().flatten())
+
+
+
+
+    base_lr = 0.1
+    lr_factor = 0.5
+    rescale_grad = 0.2
+    wd = 0.1
+    clip_gradient = 0.25
+
+    scheduler = lr_scheduler.FactorScheduler(base_lr=base_lr, step=1, factor=lr_factor)
+    opt = optimizer.SGD(learning_rate=base_lr, lr_scheduler=scheduler,
+                        rescale_grad=rescale_grad, clip_gradient=clip_gradient,
+                        wd=wd)
+    opt_sym = opt.minimize(tvm.ndarray.array(((real_label - out.asnumpy().flatten()) ** 2), ctx=ctx), var=params['dense0_weight'])
+
+
 
 
