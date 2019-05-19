@@ -5,6 +5,17 @@
 > 
 > 参考 https://github.com/OAID/Tengine/blob/master/doc/benchmark.md
 
+## 设置 GPU 的频率为最高
+
+见 https://github.com/ctuning/ck/issues/86
+
+```
+cd ~/Huawei/xiaoqiao.xu/ck-env/platform.init/firefly-linux
+./ck-set-gpu-performance
+
+# 可能需要 sudo
+```
+
 ## 设置 CPU 的频率为最高
 
 ```
