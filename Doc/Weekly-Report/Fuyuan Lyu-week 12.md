@@ -1,3 +1,10 @@
+#### 本周任务
+1. Thesis
+2. PPT框架
+3. 完成实验部分
+
+------------
+
 #### Test report on mali / opencl
 
 | Sparsity_index  | num of channel calculated | time per 100 inference |
