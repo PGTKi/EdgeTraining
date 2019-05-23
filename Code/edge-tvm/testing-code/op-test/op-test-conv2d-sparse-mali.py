@@ -12,20 +12,19 @@ from tvm.contrib import graph_runtime, util
 from tvm import rpc
 
 
-def test_one_time(one_time_length=1000, Test_sparse = True):
+def test_one_time(one_time_length=1000, Test_sparse = True, image_shape = (3, 32, 32)):
     # Hyper-parameter define
     batch_size = 1
     num_class = 10
-    image_shape = (3, 32, 32)
     data_shape = (batch_size,) + image_shape
     out_shape = (batch_size, num_class)
-    sparse_kernel_shape = (batch_size, 10)
+    sparse_kernel_shape = (batch_size, 12)
     dtype = "float32"
 
     data = sym.Variable("data")
     sparse_kernel = sym.Variable("sparse_kernel", init=np.random.randint(0, 2, sparse_kernel_shape).astype(dtype))
     if Test_sparse:
-        y1 = sym.conv2d_sparse(data=data, sparsity=sparse_kernel, channels=10, kernel_size=(3,3), padding=(0,0), use_bias=False, out_layout='NCHW')
+        y1 = sym.conv2d_sparse(data=data, sparsity=sparse_kernel, channels=12, kernel_size=(3,3), padding=(0,0), use_bias=False, out_layout='NCHW')
     else:
         y1 = sym.conv2d(data=data, channels=10, kernel_size=(3,3), padding=(0,0), use_bias=False, out_layout='NCHW')
     # y = sym.flatten(y1)
@@ -42,14 +41,12 @@ def test_one_time(one_time_length=1000, Test_sparse = True):
     # print(g.ir())
     # print("--------------Ends-----------------")
 
-
     # Create workload
     net, params = create_sparse_workload(out, batch_size, image_shape, dtype)
     # print("-------------Starts2---------------")
     # print(net.debug_str())
     # print(params)
     # print("--------------Ends2----------------")
-
 
     # Test Forward
     # NNVM-compiler build
@@ -68,10 +65,9 @@ def test_one_time(one_time_length=1000, Test_sparse = True):
 
     ctx = remote.cl(0)
 
-
     # create random input
     real_data = np.random.uniform(-1, 1, size=data_shape).astype(dtype)
-    real_sparse_kernel = np.array(([[0, 1, 0, 1, 0, 1, 0, 1, 0, 1]])).astype(dtype)
+    real_sparse_kernel = np.array(([[0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1]])).astype(dtype)
     # real_sparse_kernel = np.random.randint(0, 2, sparse_kernel_shape).astype(dtype)
 
     # print(real_data)
@@ -111,12 +107,12 @@ def test_one_time(one_time_length=1000, Test_sparse = True):
 
 
 def test_case():
-    test_length = 10
+    test_length = 20
     total_time = 0.
     test_sparse = True
     total_log = [0. for i in range(test_length)]
     for i in range(test_length):
-        this_time = test_one_time(1000, test_sparse)
+        this_time = test_one_time(100, test_sparse, (3, 254, 254))
         total_time += this_time
         total_log[i] = this_time
     print(total_time/test_length)
