@@ -7,3 +7,7 @@
 - 完成profiling测试，需要@xuxiaoqiao帮助
 - 完成反向时间的测试
 - 完成前向精度的测试，resnet-18 model
+
+#### 当前工作
+以sparsity tensor而非sparsity index的形式控制矩阵的运算
+
