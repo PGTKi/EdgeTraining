@@ -16,3 +16,10 @@
 3. 整理目前面对的挑战。梳理确认，回答
     1. 哪些是真实面对的问题
     2. 讨论解决方案
+
+---
+
+# detailed progress
+
+- [ ] opencl runtime stuff
+- [ ] 记录讨论结果?
