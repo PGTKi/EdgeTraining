@@ -16,8 +16,8 @@
 #### 和蒋老师讨论之后的工作
 1. 首先ad-hoc的方法，以dense的形式输入weight，确保有一个不错的training和inference结果
 2. 以下二选一：
-  2.1 以sparse tensor的形式输入到kernel中，确保对所有结构化稀疏算法的支持。最好能做到在dense kernel尺寸不变的情况下，以batch为单位更改数据（这一batch 13579，下一batch 246810）
-  2.2 更focus在layer之间的信息传递。对feature map加1 0 mask，仅传递mask=1的filter和mask本身。减少内存通信。
+    - 以sparse tensor的形式输入到kernel中，确保对所有结构化稀疏算法的支持。最好能做到在dense kernel尺寸不变的情况下，以batch为单位更改数据（这一batch 13579，下一batch 246810）
+    - 更focus在layer之间的信息传递。对feature map加1 0 mask，仅传递mask=1的filter和mask本身。减少内存通信。
 
 #### 帮@xuxiaoqiao记录
 1. 实现完整网络训练（能够与我的1相连）
