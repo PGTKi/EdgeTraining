@@ -23,3 +23,9 @@
 1. 实现完整网络训练（能够与我的1相连）
 2. devonv算子与ACL等别的库比较（ad-hoc的算法是在ACL等库中实现一个转置+conv2d_transpose+另一个转置）
 3. 支持稀疏化相关的工作
+
+---------------------------------
+
+#### ResNet-18 前向
+需要注意的是，PyTorch中部分写法在转ONNX再转NNVM的过程会产生错误：
+详见[链接](https://shimo.im/docs/ueStE3bAUNkQL5P3/)
