@@ -8,3 +8,7 @@
 
 关于第二点，现在挑战比较大的是 batchnorm 的反向。此前 BN 只支持前向，并且它的前向也是特殊处理的（在 `SimplifyInference` 中特殊处理，把 BN 替换成其他 NNVM OP
 所以反向也要特殊处理。
+
+## 关于 Sparsity
+
+NNVM 中已经有 CSR sparsity 的支持，可以看 `tvm.sparse` 模块。我们的设计可以参考这一点。总的来说就是一个 Python 层面 thin wrapper。(在 Python  object 里面保存多个普通的 TVM Tensor)
