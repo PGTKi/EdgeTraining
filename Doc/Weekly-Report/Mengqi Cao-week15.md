@@ -42,6 +42,27 @@ PyTorch复现论文，修改VGG-16（在output channel后添加element-wise scal
 
   > proximal gradient descent实现，这周没肝出来
 
+论文中的gradient descent实现，函数声明：
+$$
+\text{learning rate}: \eta_t \text{ at epoch }t,\text{ weight of L1-norm}: \gamma \\
+\text{soft-threshold function}: S_\alpha(z) = \text{sign}(z)(|z|-\alpha)\\
+\text{object function}: G(\lambda) = \frac{1}{N}\sum_i Loss(y_i,C(x_i,\lambda))
+$$
+以下是公式推导：
+$$
+\lambda'_{t-1} = \lambda_{t-1} + \frac{t-2}{t+1} (\lambda_{t-1}-\lambda_{t-2})\\
+z_t = \lambda'_{t-1} - \eta_t \nabla G(\lambda'_{t-1})\\
+v_t = S_{\eta_t\gamma}(z_t) - \lambda'_{t-1} + \frac{t-2}{t+1} (\lambda_{t-1}-\lambda_{t-2})\\
+\lambda'_t = S_{\eta_t\gamma}(z_t)+\frac{t-2}{t+1}v_t
+$$
+作者在论文里还贴了图：
+
+![](code.png)
+
+作者的源代码：MXNET继承了封装好的SGD，所以update()的state, index等变量都是封装好的。
+
+![](code2.png)
+
 ### 我的实验
 
 - [ ] 模型训练结束后，统计CIFAR100的准确率
