@@ -6,4 +6,5 @@
 关于第一点，TVM Graph Runtime 目前的逻辑是 `run()` 只管 push task to queue list, get_output 才会等待 queue 结束并读结果。所以在计时的时候要 了解这一点
 比较推荐的做法是用 `module.time_evaluator`
 
-关于第二点，现在挑战比较大的是 batchnorm 的反向
+关于第二点，现在挑战比较大的是 batchnorm 的反向。此前 BN 只支持前向，并且它的前向也是特殊处理的（在 `SimplifyInference` 中特殊处理，把 BN 替换成其他 NNVM OP
+所以反向也要特殊处理。
