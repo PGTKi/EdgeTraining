@@ -11,4 +11,4 @@
 
 ## 关于 Sparsity
 
-NNVM 中已经有 CSR sparsity 的支持，可以看 `tvm.sparse` 模块。我们的设计可以参考这一点。总的来说就是一个 Python 层面 thin wrapper。(在 Python  object 里面保存多个普通的 TVM Tensor)
+NNVM 中已经有 CSR sparsity 的支持，可以看 `tvm.contrib.sparse` 模块。我们的设计可以参考这一点。总的来说就是一个 Python 层面 thin wrapper。(在 Python  object 里面保存多个普通的 TVM Tensor)
