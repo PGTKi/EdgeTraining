@@ -13,3 +13,11 @@
 | -----|------| ---------------- |
 | resnet-18-baseline | 283.62 | 2.31 | 
 | resnet-18-pruned-wos | 189.36 | 1.53 | 
+
+
+在RK3399 Mali上以800MHz频率（最高）运行，CPU锁频为最高，重复30次
+
+| network | mean(ms) | std(ms) |
+| -----|------| ---------------- |
+| resnet-18-baseline | 84.69 | 2.08 | 
+| resnet-18-pruned-wos | 54.19 | 1.03 | 
