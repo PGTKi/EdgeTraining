@@ -21,3 +21,9 @@
 | -----|------| ---------------- |
 | resnet-18-baseline | 84.69 | 2.08 | 
 | resnet-18-pruned-wos | 54.19 | 1.03 | 
+
+#### Profiling
+##### CPU
+![CPU](https://github.com/acada-sjtu/EdgeTraining/blob/master/Doc/Weekly-Report/CPU.jpg)
+##### GPU
+![GPU](https://github.com/acada-sjtu/EdgeTraining/blob/master/Doc/Weekly-Report/GPU.jpg)
