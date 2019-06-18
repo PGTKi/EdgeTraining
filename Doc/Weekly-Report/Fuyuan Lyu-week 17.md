@@ -11,6 +11,8 @@ __目标：把sparsity flow加入地更完整到TVM框架中，实现对soarsity
 5. 交付华为中期报告
 
 #### Survey
+[Here](https://shimo.im/docs/xQ4baX8mRsQuG0GZ/)
+
 __[Viterbi-based Pruning for Sparse Matrix with Fixed and High Index Compression Ratio](https://cn.bing.com/academic/profile?id=e6b8a90c926a15a2484bcbe332f7a45e&encoded=0&v=paper_preview&mkt=zh-cn)__
 
 与其说是pruning，不如说是compressing。借用隐马尔科夫模型中的Viterbi方法，将layer整个压缩到一定的ratio。
