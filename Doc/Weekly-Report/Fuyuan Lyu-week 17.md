@@ -13,6 +13,15 @@ __目标：把sparsity flow加入地更完整到TVM框架中，实现对soarsity
 #### Survey
 [Here](https://shimo.im/docs/xQ4baX8mRsQuG0GZ/)
 
+
+#### Discuss with Prof Jiang
+TODO:
+1. 反向BN做比较好的支持
+2. layer与layer之间只传递非0数据
+3. 对channel pruning和bp优化好一些
+4. 考虑多模型反向支持:如LSTM等
+
+
 -----------------------------------------------
 
 #### 5000x model compression in DNNs; But is it truly desirable?
