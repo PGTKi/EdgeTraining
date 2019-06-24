@@ -11,7 +11,7 @@
 
 [Faster CNNs with Direct Sparse Convolutions and Guided Pruning](https://arxiv.org/abs/1608.01409)是由Intel所作的、对sparse在Intel CPU上做的支持。其支持的方法为non-structured sparsity。其写法对于我们之后的paper有参考意义。
 
-快手的两篇文章:
+##### 快手的两篇文章:
 1. [ECC: Platform-Independent Energy-Constrained Deep Neural Network Compression via a Bilinear Regression Model](https://arxiv.org/abs/1812.01803)
 2. [Energy-Constrained Compression for Deep Neural Networks via Weighted Sparse Projection and Layer Input Masking](https://openreview.net/forum?id=BylBr3C9K7)
 
@@ -19,5 +19,6 @@
 
 不同的是前一篇target channel pruning on pretrained model，后一篇target training from scratch。前一篇用3层神经网络训练预测能耗的model，后一篇定义能耗为计算能耗加访存能耗。
 
-
-
+##### 第二阶段计划
+1. 完成稀疏化data flow的设置
+2. 根据上述data flow，高效执行conv操作
