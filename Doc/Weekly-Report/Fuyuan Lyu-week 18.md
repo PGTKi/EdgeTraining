@@ -22,3 +22,27 @@
 ##### 第二阶段计划
 1. 完成稀疏化data flow的设置
 2. 根据上述data flow，高效执行conv操作
+3. 部分算子返工，如BN
+4. Schedule优化
+5. import的问题（优先级低）
+
+##### 第二阶段关于稀疏性可能遇到的6个问题及要点
+1. ElementWise 加和乘法要做最坏打算，即50%稀疏度，channel各为4的两个tensor相加，输出index长度为最大可能性，即4；相乘，输出index长度亦为最大可能性，即2。因为我们无法在compile的时候获得相应的信息，因此只好做worst case
+2. 对于不同的Op是否需要重写运算
+
+| Op | 是否需要重写 |
+| ------- | ------ |
+| ReLU | 否 | 
+| Pooling | 否 |
+| BN | 是 |
+| element-wise add/time | 是 |
+| dense | 是 |
+| conv | 是 |
+
+3. 对于Winograd, im2col, FFT不做支持，因为这些需要算法层面的解释
+4. Conv2DParams参数需要添加以下几点：
+  - sparsity ratio，需要确定下一步data tensor的大小
+  - full length of input/output channel，确保能够还原原来的tensor
+5. conv中data和index flow两者分开计算
+6. 能否简单复用，作为一个数据量更小的conv层？如果复用的话，需要牵扯构建新的tensor，导致内存的增大
+
