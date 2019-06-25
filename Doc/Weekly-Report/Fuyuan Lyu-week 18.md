@@ -51,4 +51,20 @@
 1. LFY Conv2d实现初步+毕旅
 2. XXQ BN重写+Schedule优化
 
+##### 在Conv2d层中是否需要创建新kernel
+
+这一段在回答之前的问题6。
+
+在之前实现的版本中，我们是根据sparsity信息的对kernel进行重构，创造一个更紧凑的dense tensor，并复用TVM本来的conv2d实现，来完成实现。
+
+但这样会导致新的内存占用，并不符合我们“减少30%内存占用”的要求。
+
+倘若在conv2d_sparse的data flow之外，添加index flow，以新的格式传输和解析数据，可以较好地避免大规模传递数值为0的无意义的数据。
+
+但根据以上规划，在conv2d内部计算的时候就会产生一定的问题。用于kernel多是以__OIHW__形式存储的，其中 __O__ 的稀疏性独立，__I__ 的稀疏性依赖于feature map，而kernel的index flow只记录__O__的稀疏性，为了避免计算0，需要根据feature map的index flow，避免对应kernel中的计算。这就有两种实现方式：
+
+1. 根据runtime时的index flow的稀疏性，重构一个dense kernel，复用相应的conv2d实现
+2. 直接读入，在schedule和compute中跳过相应的计算
+
+在[convnet-burden](<https://github.com/albanie/convnet-burden>)中，我们发现resnet-18的feature map memory为23MB，kernel memory为45MB，重构一个新的kernel（即使它更小）的代价并不小，无法完全满足30%内存减少的要求。因此路线1放弃，只能选择路线2。
 
