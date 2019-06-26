@@ -82,7 +82,7 @@
 
 ##### 和XXQ讨论之后的若干要点
 1. Pooling无法做layer fusion
-2. Relay暂无对Dynamic Shape的支持，目前只有一个[RPC](https://github.com/dmlc/tvm/issues/3042)
+2. Relay暂无对Dynamic Shape的支持，目前只有一个[Request for Comments](https://github.com/dmlc/tvm/issues/3042)
 3. 支持sparsity的element-wise add的代码逻辑。先用scatter的方式找到output_index，构建output_data所需要的计算表达式，在用gather的方式计算出output_data
 4. 我的TODO：需要check BN层正常的反向逻辑，support XXQ这周的工作
 5. XXQ实现BN的两种技术路线：
