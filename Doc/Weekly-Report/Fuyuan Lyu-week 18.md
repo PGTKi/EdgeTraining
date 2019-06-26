@@ -77,3 +77,15 @@
 - [ ] tvm.register_schedule default实现
 - [ ] tvm.register_compute mali实现
 - [ ] tvm.register_schedule mali实现
+
+
+
+##### 和XXQ讨论之后的若干要点
+1. Pooling无法做layer fusion
+2. Relay暂无对Dynamic Shape的支持，目前只有一个[RPC](https://github.com/dmlc/tvm/issues/3042)
+3. 支持sparsity的element-wise add的代码逻辑。先用scatter的方式找到output_index，构建output_data所需要的计算表达式，在用gather的方式计算出output_data
+4. 我的TODO：需要check BN层正常的反向逻辑，support XXQ这周的工作
+5. XXQ实现BN的两种技术路线：
+    1. 类似BN正向，通过Simplify解构成若干乘法和加法
+    2. 类似一般的反向，在TVM中定义算子，整体计算。（遇到的问题是如果有类似Momentum和Adam这类需要知道上一个batch信息的函数，就需要配有Assign和update操作。而Assign和update操作只能在NNVM中实现，TVM不能处理这种信息）
+
