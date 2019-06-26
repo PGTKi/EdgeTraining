@@ -68,3 +68,12 @@
 
 在[convnet-burden](<https://github.com/albanie/convnet-burden>)中，我们发现resnet-18的feature map memory为23MB，kernel memory为45MB，重构一个新的kernel（即使它更小）的代价并不小，无法完全满足30%内存减少的要求。因此路线1放弃，只能选择路线2。
 
+
+
+##### 实现Conv2D Sparse Op可能需要的步骤
+- [ ] NNVM_REGISTER_OP以及对应的Conv2DSparseParam: 主要将index flow加入到layer中
+- [ ] nnvm.register_compute和nnvm.register_schedule，进行断言推断和嵌套实现，调用下层TOPI算子
+- [ ] tvm.register_compute default实现
+- [ ] tvm.register_schedule default实现
+- [ ] tvm.register_compute mali实现
+- [ ] tvm.register_schedule mali实现
