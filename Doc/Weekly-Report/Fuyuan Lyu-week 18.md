@@ -49,7 +49,7 @@
 
 ##### Week 18 规划
 1. LFY Conv2d实现初步+毕旅
-2. XXQ BN重写+Schedule优化
+2. XXQ BN重写+Schedule优化+DMAC
 
 ##### 在Conv2d层中是否需要创建新kernel
 
