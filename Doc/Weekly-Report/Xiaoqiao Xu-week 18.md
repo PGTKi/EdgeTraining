@@ -10,14 +10,20 @@
   - BatchNorm: BatchNorm 有一步是给输出加 `beta`, 但是对于稀疏(被 omit out)的单元, 应该怎么处理?
     - 初步讨论的看法: fine-tuning 的时候通常会 freeze 中间的层，所以这个问题暂时可以搁置 ---- 有点类似于把 conv + BN 退化成 conv + bias.
  
- # 非稀疏的 BatchNorm 反向实现
+# 非稀疏的 BatchNorm 反向实现
  
- - 路线: 禁用旧的 `simplify_inference` pass, 实现相应的 FTVMCompute 和 FGradient
- - 特殊处理: 更新 `moving_var` / `moving_mean` 的时候需要在计算图层面增加 `_assign` 
+- 路线: 禁用旧的 `simplify_inference` pass, 实现相应的 FTVMCompute 和 FGradient
+- 特殊处理: 更新 `moving_var` / `moving_mean` 的时候需要在计算图层面增加 `_assign` 
  
- # Resources on TVM
+# Resources on TVM
  
- - 计算图层面: 
-   - tqchen 的课 [Systems for ML](https://dlsys.cs.washington.edu/)
- - Tensor Expression: 
-   - (tvm 文档?)
+- 计算图层面: 
+  - tqchen 的课 [Systems for ML](https://dlsys.cs.washington.edu/)
+- Tensor Expression: 
+  - (tvm 文档?)
+
+# demo 准备
+
+- BatchNorm 算子
+- Depthwise Grad
+- CPU 占用率?
