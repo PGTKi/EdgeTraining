@@ -1,10 +1,11 @@
 ## Conv2DSparse NNVM改写
 - [x] FGetAttrDict
 - [x] FListInputNames: 在List中加入data_index和weight_index
-- [ ] FInferShape: 更改所有的index、output的ndim，增加index的shape assignment
+- [x] FInferShape: 更改所有的index、output的ndim，增加index的shape assignment
 - [x] FInferType：更改所有的index、output的ndim，将else中的ElemWiseType更改为<-1,-1>以避开判定
 - [x] FCorrectLayout：更改Layout属性，以便衔接后续的FInferShape和FInferType
 
+## NNVM Compute和Schedule
 
 ---------------------------
 
