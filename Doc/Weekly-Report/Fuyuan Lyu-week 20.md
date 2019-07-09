@@ -5,7 +5,16 @@
 - [x] FInferType：更改所有的index、output的ndim，将else中的ElemWiseType更改为<-1,-1>以避开判定
 - [x] FCorrectLayout：更改Layout属性，以便衔接后续的FInferShape和FInferType
 
-## NNVM Compute和Schedule
+## Discussion with Prof Jiang on 2019-07/09
+1. (低优先级) Survey TVM Dynamic Shape的讨论和Relay的核心贡献
+2. (高优先级) Paper先预定ASPLOS 2020 (8/9 abstract)
+    - 文章思路如下：
+        1. 因为privacy等原因需要edge training: Some technicial points about vectorization and etc.
+        2. edge上网络有结构化稀疏: Diss non-structured pruning
+        3. finetune需要保证结构化
+        4. Algorithm Independent: decouple the strong connection between library and pruning alogrithm
+3. 1,3 可以分离给别的同学
+4. 深兰科技的项目可以考虑NNVM/Relay生成json，加一些处理即可
 
 ---------------------------
 
