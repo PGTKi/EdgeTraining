@@ -1,15 +1,15 @@
-### 一些长期的课题
+## 一些长期的课题
 
-#### Two big assumptions
+### Two big assumptions
 
 1. 边缘端需要支持训练
 2. 边缘端的训练和推断可能需要用到pruning、quantization等efficient neural network手段
 
 
 
-#### Architecture 层面
+### Architecture 层面
 
-##### 1. 在边缘端上的动态图问题
+#### 1. 在边缘端上的动态图问题
 
 __需求__
 
@@ -22,7 +22,7 @@ __可能的参考__
 
 
 
-##### 2. JIT与动态图的关系，为什么大量业界的高性能计算库大多使用JIT
+#### 2. JIT与动态图的关系，为什么大量业界的高性能计算库大多使用JIT
 
 __需求__
 
@@ -37,9 +37,9 @@ __可能的参考__
 
 
 
-#### Algorithm 层面
+### Algorithm 层面
 
-##### 1. 对于BN层的处理
+#### 1. 对于BN层的处理
 
 __需求__
 
