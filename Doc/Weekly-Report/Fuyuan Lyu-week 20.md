@@ -1,3 +1,13 @@
+## Conv2DSparse NNVM改写
+- [x] FGetAttrDict
+- [x] FListInputNames: 在List中加入data_index和weight_index
+- [x] FInferShape: 更改所有的index、output的ndim
+- [x] FInferType：更改所有的index、output的ndim，将else中的ElemWiseType更改为<-1,-1>以避开判定
+- [ ] FCorrectLayout
+
+
+---------------------------
+
 ## 一些长期的课题
 
 ### Two big assumptions
