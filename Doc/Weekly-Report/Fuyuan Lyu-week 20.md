@@ -3,7 +3,7 @@
 - [x] FListInputNames: 在List中加入data_index和weight_index
 - [x] FInferShape: 更改所有的index、output的ndim
 - [x] FInferType：更改所有的index、output的ndim，将else中的ElemWiseType更改为<-1,-1>以避开判定
-- [ ] FCorrectLayout
+- [ ] FCorrectLayout：更改Layout属性，以便衔接后续的FInferShape和FInferType
 
 
 ---------------------------
