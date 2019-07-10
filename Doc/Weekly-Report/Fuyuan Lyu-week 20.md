@@ -73,8 +73,8 @@ __需求__
 
 ## 一些短期的课题
 1. depth-wise的反向（TVM+少量NNVM）
-2. ReLU, maxpool, avgpool对sparsity index的支持（NNVM）
+2. ~~ReLU, maxpool, avgpool对sparsity index的支持（NNVM）~~
 3. 良好的import问题（NNVM）
-4. Dense对sparsity index的支持（NNVM+TVM，输入稀疏、输出不稀疏）
+4. ~~Dense对sparsity index的支持（NNVM+TVM，输入稀疏、输出不稀疏）~~
 
 
