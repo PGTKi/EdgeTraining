@@ -17,11 +17,11 @@
 4. 深兰科技的项目可以考虑NNVM/Relay生成json，加一些处理即可
 
 ## Survey after discussion
-1. Relay的核心思想是把NNVM替换成一种PL，因而可以借用Compiler领域的经典优化。特征有
+1. Relay的核心思想是把NNVM替换成一种PL，因而可以借用Compiler领域的经典优化。特征有：
     1. high-order differentation
     1. rich type system
 2. Relay对于Dynamic Shape的RFC主要在于：
-    1. VM/Interpretator层面
+    1. VM/Interpretator层面，也就是JIT
     2. Compiler/static层面，以Symbolic表述生成code
 3. Relay本身在考虑double runtime:
     1. dynamic runtime for Server
