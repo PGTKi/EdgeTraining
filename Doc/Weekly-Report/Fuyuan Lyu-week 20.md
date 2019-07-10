@@ -25,7 +25,7 @@
     2. Compiler/static层面，以Symbolic表述生成code
 3. Relay本身在考虑double runtime:
     1. dynamic runtime for Server
-    2. static minimum runtime for embedded syste,
+    2. static minimum runtime for embedded system
 
 
 ---------------------------
