@@ -7,7 +7,7 @@
 [Rethinking the Smaller-Norm-Less-Informative Assumption in Channel Pruning of Convolution Layers](https://arxiv.org/abs/1802.00124)
 将BN中的gamma与channel pruning结合，对网络整体的channel数量进行压缩，数学上论证了一些直观方法的不可行性
 
-__可参考的思想__
+__可参考的思想：__
 算法层面优化需要整体考虑整个网络
 
 #### BN Algorithm
