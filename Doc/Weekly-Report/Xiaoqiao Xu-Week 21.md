@@ -9,5 +9,6 @@
 
 - [x] 关于上周遇到的问题：TVM Tensor Expression 的表达力比较有限（因为它的 Bound Inference 等功能限制了表达能力). 解决方案是 `ir_builder`
 - [x] 关于 Sparse: 解决一个关于 workload 的报错. 删除了一个不该存在的 declaration
+- [x] 关于 CodeGen 过程中的 LLVM 相关报错。
 - [x] 和 `InferShape` 相关的 DEBUG
 - [ ] TODO: `ir_builder` 中对 OpenCL 的线程绑定是怎么做的？(ir_builder 自带的 for loop 有 vectorize 和 parallel 类型，但是没有对应于 OpenCL bind 的 for 类型)
