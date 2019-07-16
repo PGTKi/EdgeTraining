@@ -23,4 +23,9 @@ __可参考的思想：__
     - OpenCL extern compute可以参考
     - OpenCL extern schedule如何实现正在调研
     
+--------------------
 
+### 下周完成
+- conv2d_sparse在TVM完成
+- Element-wise Add/Multi layer 尽量开始写
+- BN期望等一下Algorithm层面的结论
