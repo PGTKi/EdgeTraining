@@ -29,4 +29,4 @@ __可参考的思想：__
 - conv2d_sparse在TVM完成
 - Element-wise Add/Multi layer 尽量开始写
 - BN期望等一下Algorithm层面的结论
-- 整理在实现过程中遇到和解决的问题
+- 整理在实现过程中遇到和解决的问题，见[这里](https://github.com/acada-sjtu/EdgeTraining/blob/master/Doc/Weekly-Report/Some%20question%20we%20met%20in%20the%20paper.md)
