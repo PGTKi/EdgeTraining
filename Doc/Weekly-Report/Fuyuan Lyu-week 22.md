@@ -9,7 +9,7 @@
 
 
 #### Conv2d_sparse
-In progress
+In progress， test function finished
 
 #### Elementwise-add/multi
 Freezed
