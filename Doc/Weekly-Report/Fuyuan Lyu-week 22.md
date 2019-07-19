@@ -35,3 +35,4 @@ Freezed
 4. Some other points:
     1. open review中似乎讨论到和Dropout的关系。author claim自己的方法比dropout更有针对性地保留重要neurons
     2. Double-mask selection能否被借鉴到我们的method中？如果在Algorithm level证明可行，在System level，依照我们目前的design应该不难实现
+    3. [文章和open review](https://openreview.net/forum?id=H1goBoR9F7)及[3rd-party reimplementation](https://github.com/mtcrawshaw/dynamic-sparse-graph)
