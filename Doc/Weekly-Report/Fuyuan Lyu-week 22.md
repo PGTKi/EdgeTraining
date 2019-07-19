@@ -30,7 +30,7 @@ Freezed
     3. Double-mask selection for BN compatibility：这是和我们关系最大的部分。做法是把之前1中的mask拿来用一边，来保证sparsity
 3. Drawbacks for my point of view
     1. real-speedup test只在Intel MKL上做了，作者在open review中也承认在GPU上实现比较困难
-    2. 作者似乎没有考虑到稀疏性的传递。虽然double-mask selection保证了在单iteration中稀疏性没问题，使得反向好算，但这种稀疏性并没有被传递到下一层，用于减少下一层中不必要的计算量。作者对稀疏性的算法依然是每层依据自己的local feature来进行的，而不看network中的global feature。或许与之前一篇文章[Rethinking the Smaller-Norm-Less-Informative Assumption in Channel Pruning of Convolution Layers](https://arxiv.org/abs/1802.00124)可以集合？
+    2. 作者似乎没有考虑到稀疏性的传递。虽然double-mask selection保证了在单iteration中稀疏性没问题，使得反向好算，但这种稀疏性并没有被传递到下一层，用于减少下一层中不必要的计算量。作者对稀疏性的算法依然是每层依据自己的local feature来进行的，而不看network中的global feature。或许与之前一篇文章[Rethinking the Smaller-Norm-Less-Informative Assumption in Channel Pruning of Convolution Layers](https://arxiv.org/abs/1802.00124)可以结合？
     3. 在GEMM上加速效果相较于VMM差很多（open review中承认GEMM没有实测过，VMM），作者解释他们的加速算法在GEMM上变成了irregular。原因在于structured pruning GEMM省去该行与另一个矩阵中所有的列的计算，而本文对于不同的行会省去不同的列的计算（如行1计算列1、3、5，行2计算猎2、4、6）。因此，或许VMM是GEMM的更细粒度版本？（this needs to be verified）
 4. Some other points:
     1. open review中似乎讨论到和Dropout的关系。author claim自己的方法比dropout更有针对性地保留重要neurons
